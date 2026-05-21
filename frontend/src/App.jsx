@@ -8,9 +8,13 @@ import MyTasks from "./pages/user/MyTasks"
 
 import AdminDashboard from "./pages/admin/AdminDashboard"
 import UserManagement from "./pages/admin/UserManagement"
+import TaskMonitoring from "./pages/admin/TaskMonitoring"
+import ActivityLogs from "./pages/admin/ActivityLogs"
 
 import ProtectedRoute from "./routes/ProtectedRoute"
 import AdminRoute from "./routes/AdminRoute"
+import Layout from "./components/Layout"
+
 function App() {
   return (
     <BrowserRouter>
@@ -23,7 +27,9 @@ function App() {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <Layout>
+                <Dashboard />
+              </Layout>
             </ProtectedRoute>
           }
         />
@@ -31,7 +37,9 @@ function App() {
           path="/tasks"
           element={
             <ProtectedRoute>
-              <MyTasks />
+              <Layout>
+                <MyTasks />
+              </Layout>
             </ProtectedRoute>
           }
         />
@@ -40,15 +48,39 @@ function App() {
           path="/admin/dashboard"
           element={
             <AdminRoute>
-              <AdminDashboard />
+              <Layout>
+                <AdminDashboard />
+              </Layout>
             </AdminRoute>
           }
         />
-         <Route
+        <Route
           path="/admin/users"
           element={
             <AdminRoute>
-              <UserManagement />
+              <Layout>
+                <UserManagement />
+              </Layout>
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/tasks"
+          element={
+            <AdminRoute>
+              <Layout>
+                <TaskMonitoring />
+              </Layout>
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/logs"
+          element={
+            <AdminRoute>
+              <Layout>
+                <ActivityLogs />
+              </Layout>
             </AdminRoute>
           }
         />

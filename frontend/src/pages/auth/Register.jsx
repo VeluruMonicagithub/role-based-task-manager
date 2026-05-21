@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
+import { FiUser, FiMail, FiLock, FiAlertCircle } from "react-icons/fi"
 
 import api from "../../services/api"
 
@@ -9,53 +10,159 @@ const Register = () => {
     email: "",
     password: "",
   })
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setError("")
 
-    await api.post("/auth/register", formData)
-    navigate("/")
+    if (!formData.name.trim() || !formData.email.trim() || !formData.password.trim()) {
+      setError("Please fill in all fields")
+      return
+    }
+
+    if (formData.password.length < 6) {
+      setError("Password must be at least 6 characters long")
+      return
+    }
+
+    setLoading(true)
+    try {
+      await api.post("/auth/register", formData)
+      navigate("/")
+    } catch (err) {
+      setError(err.response?.data?.message || "Registration failed. Try again.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-8 rounded shadow-md w-96"
-      >
-        <h2 className="text-2xl font-bold mb-4">Register</h2>
+    <div className="relative min-h-screen w-full flex items-center justify-center bg-zinc-950 px-4 overflow-hidden">
+      {/* Decorative Blur Spheres */}
+      <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-600/20 rounded-full blur-3xl -z-10" />
 
-        <input
-          type="text"
-          placeholder="Name"
-          className="border p-2 w-full mb-4"
-          onChange={(e) =>
-            setFormData({ ...formData, name: e.target.value })
-          }
-        />
-          <input
-          type="email"
-          placeholder="Email"
-          className="border p-2 w-full mb-4"
-          onChange={(e) =>
-            setFormData({ ...formData, email: e.target.value })
-          }
-        />
+      <div className="w-full max-w-md">
+        {/* Title */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-500 to-indigo-600 font-black text-2xl text-white shadow-glow mb-3">
+            V
+          </div>
+          <h1 className="font-display font-bold text-3xl tracking-tight text-zinc-100">
+            Create Account
+          </h1>
+          <p className="text-zinc-400 text-sm mt-1">
+            Get started with your collaborative workspace
+          </p>
+        </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          className="border p-2 w-full mb-4"
-          onChange={(e) =>
-            setFormData({ ...formData, password: e.target.value })
-          }
-        />
-        <button className="bg-green-500 text-white px-4 py-2 w-full">
-          Register
-        </button>
-      </form>
+        {/* Card */}
+        <div className="glass-card rounded-3xl p-8 shadow-2xl relative">
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {error && (
+              <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-xl text-sm">
+                <FiAlertCircle className="w-4 h-4 shrink-0" />
+                <span className="font-medium">{error}</span>
+              </div>
+            )}
+
+            {/* Name Field */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                Full Name
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
+                  <FiUser className="w-4 h-4" />
+                </div>
+                <input
+                  id="register-name"
+                  type="text"
+                  placeholder="Monica Veluru"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                  className="input-style w-full pl-11 pr-4 py-3 rounded-xl text-sm"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Email Field */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                Email Address
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
+                  <FiMail className="w-4 h-4" />
+                </div>
+                <input
+                  id="register-email"
+                  type="email"
+                  placeholder="name@example.com"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  className="input-style w-full pl-11 pr-4 py-3 rounded-xl text-sm"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Password Field */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                Password
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
+                  <FiLock className="w-4 h-4" />
+                </div>
+                <input
+                  id="register-password"
+                  type="password"
+                  placeholder="•••••••• (min 6 chars)"
+                  value={formData.password}
+                  onChange={(e) =>
+                    setFormData({ ...formData, password: e.target.value })
+                  }
+                  className="input-style w-full pl-11 pr-4 py-3 rounded-xl text-sm"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              id="register-submit"
+              type="submit"
+              disabled={loading}
+              className="glow-btn w-full text-white font-medium py-3 rounded-xl hover:scale-[1.01] active:scale-100 transition-all text-sm flex items-center justify-center gap-2 disabled:opacity-75 disabled:pointer-events-none cursor-pointer"
+            >
+              {loading ? (
+                <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              ) : (
+                "Create Workspace"
+              )}
+            </button>
+          </form>
+
+          {/* Form Footer */}
+          <div className="text-center mt-6 pt-6 border-t border-zinc-800/80 text-sm">
+            <span className="text-zinc-500">Already have an account? </span>
+            <Link to="/" className="text-purple-400 hover:text-purple-300 font-semibold transition-colors">
+              Sign in instead
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
