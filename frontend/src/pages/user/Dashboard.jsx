@@ -82,10 +82,10 @@ const Dashboard = () => {
       <div className="glass-card rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
         <div className="space-y-2">
-          <h1 className="font-display font-bold text-2xl md:text-3xl tracking-tight text-zinc-100">
+          <h1 className="font-display font-bold text-2xl md:text-3xl tracking-tight text-text-main">
             {getGreeting()}, <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">{user?.name}</span>!
           </h1>
-          <p className="text-zinc-400 text-sm max-w-lg">
+          <p className="text-text-muted text-sm max-w-lg">
             Welcome to your dashboard. You have <span className="text-purple-400 font-semibold">{stats.pending} pending tasks</span> left to complete today. Let's make it productive!
           </p>
         </div>
@@ -105,9 +105,9 @@ const Dashboard = () => {
           <div className="absolute top-3 right-3 w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400">
             <FiActivity className="w-5 h-5" />
           </div>
-          <p className="text-zinc-500 text-xs font-semibold uppercase tracking-wider">Total Tasks</p>
-          <p className="text-3xl font-display font-bold text-zinc-100 mt-2">{stats.total}</p>
-          <p className="text-zinc-400 text-xs mt-1">Items in your backlogs</p>
+          <p className="text-text-muted text-xs font-semibold uppercase tracking-wider">Total Tasks</p>
+          <p className="text-3xl font-display font-bold text-text-main mt-2">{stats.total}</p>
+          <p className="text-text-muted text-xs mt-1">Items in your backlogs</p>
         </div>
 
         {/* Pending Tasks */}
@@ -115,9 +115,9 @@ const Dashboard = () => {
           <div className="absolute top-3 right-3 w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400">
             <FiClock className="w-5 h-5" />
           </div>
-          <p className="text-zinc-500 text-xs font-semibold uppercase tracking-wider">Pending Tasks</p>
-          <p className="text-3xl font-display font-bold text-zinc-100 mt-2">{stats.pending}</p>
-          <p className="text-zinc-400 text-xs mt-1">Awaiting completion</p>
+          <p className="text-text-muted text-xs font-semibold uppercase tracking-wider">Pending Tasks</p>
+          <p className="text-3xl font-display font-bold text-text-main mt-2">{stats.pending}</p>
+          <p className="text-text-muted text-xs mt-1">Awaiting completion</p>
         </div>
 
         {/* Completed Tasks */}
@@ -125,16 +125,16 @@ const Dashboard = () => {
           <div className="absolute top-3 right-3 w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
             <FiCheckCircle className="w-5 h-5" />
           </div>
-          <p className="text-zinc-500 text-xs font-semibold uppercase tracking-wider">Completed Tasks</p>
-          <p className="text-3xl font-display font-bold text-zinc-100 mt-2">{stats.completed}</p>
-          <p className="text-zinc-400 text-xs mt-1">Completed successfully</p>
+          <p className="text-text-muted text-xs font-semibold uppercase tracking-wider">Completed Tasks</p>
+          <p className="text-3xl font-display font-bold text-text-main mt-2">{stats.completed}</p>
+          <p className="text-text-muted text-xs mt-1">Completed successfully</p>
         </div>
 
         {/* Completion Rate */}
         <div className="glass-card rounded-2xl p-5 relative overflow-hidden">
-          <p className="text-zinc-500 text-xs font-semibold uppercase tracking-wider">Completion Rate</p>
-          <p className="text-3xl font-display font-bold text-zinc-100 mt-2">{stats.rate}%</p>
-          <div className="w-full bg-zinc-800 rounded-full h-2 mt-3.5">
+          <p className="text-text-muted text-xs font-semibold uppercase tracking-wider">Completion Rate</p>
+          <p className="text-3xl font-display font-bold text-text-main mt-2">{stats.rate}%</p>
+          <div className="w-full bg-input-main rounded-full h-2 mt-3.5">
             <div 
               className="bg-gradient-to-r from-purple-500 to-indigo-500 h-2 rounded-full transition-all duration-500" 
               style={{ width: `${stats.rate}%` }}
@@ -148,7 +148,7 @@ const Dashboard = () => {
         {/* Recent Pending Tasks */}
         <div className="lg:col-span-2 space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="font-display font-bold text-lg text-zinc-200">
+            <h3 className="font-display font-bold text-lg text-text-main">
               Urgent Tasks
             </h3>
             <Link to="/tasks" className="text-purple-400 hover:text-purple-300 font-semibold text-xs flex items-center gap-1.5 transition-colors">
@@ -159,7 +159,7 @@ const Dashboard = () => {
 
           <div className="space-y-3">
             {recentTasks.length === 0 ? (
-              <div className="glass-card rounded-2xl p-6 text-center text-zinc-500 text-sm">
+              <div className="glass-card rounded-2xl p-6 text-center text-text-muted text-sm">
                 🎉 Hooray! You have no pending tasks right now.
               </div>
             ) : (
@@ -169,8 +169,8 @@ const Dashboard = () => {
                   className="glass-card rounded-2xl p-4 flex items-center justify-between border-l-4 border-l-amber-500"
                 >
                   <div className="space-y-1">
-                    <p className="font-semibold text-zinc-200 text-sm">{task.title}</p>
-                    <p className="text-xs text-zinc-400 truncate max-w-sm sm:max-w-md">{task.description}</p>
+                    <p className="font-semibold text-text-main text-sm">{task.title}</p>
+                    <p className="text-xs text-text-muted truncate max-w-sm sm:max-w-md">{task.description}</p>
                   </div>
                   <span className="text-[10px] bg-amber-500/10 border border-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full font-medium">
                     Incomplete
@@ -183,11 +183,11 @@ const Dashboard = () => {
 
         {/* Quick Add Form Panel */}
         <div className="space-y-4">
-          <h3 className="font-display font-bold text-lg text-zinc-200">
+          <h3 className="font-display font-bold text-lg text-text-main">
             Quick Launcher
           </h3>
           <div className="glass-card rounded-2xl p-5 space-y-4">
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-text-muted">
               Add a quick task to your backlogs instantly without description fields.
             </p>
             <form onSubmit={handleQuickTask} className="space-y-3">

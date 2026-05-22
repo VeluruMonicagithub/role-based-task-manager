@@ -95,13 +95,13 @@ const MyTasks = () => {
       {/* Task Creation Form Card */}
       <div className="glass-panel rounded-3xl p-6 shadow-xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
-        <h3 className="font-display font-bold text-lg text-zinc-200 mb-4 flex items-center gap-2">
+        <h3 className="font-display font-bold text-lg text-text-main mb-4 flex items-center gap-2">
           <FiPlus className="text-purple-400 w-5 h-5" />
           <span>Add New Task</span>
         </h3>
         <form onSubmit={createTask} className="grid gap-4 md:grid-cols-7 items-end">
           <div className="md:col-span-3 space-y-1.5">
-            <label className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400">Task Title</label>
+            <label className="text-[10px] font-semibold uppercase tracking-wider text-text-muted">Task Title</label>
             <input
               id="new-task-title"
               type="text"
@@ -113,7 +113,7 @@ const MyTasks = () => {
             />
           </div>
           <div className="md:col-span-3 space-y-1.5">
-            <label className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400">Short Description</label>
+            <label className="text-[10px] font-semibold uppercase tracking-wider text-text-muted">Short Description</label>
             <input
               id="new-task-desc"
               type="text"
@@ -144,7 +144,7 @@ const MyTasks = () => {
       <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
         {/* Search */}
         <div className="relative w-full sm:max-w-xs">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-text-muted">
             <FiSearch className="w-4 h-4" />
           </div>
           <input
@@ -158,7 +158,7 @@ const MyTasks = () => {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex bg-zinc-900/80 border border-zinc-800 p-1 rounded-xl w-full sm:w-auto">
+        <div className="flex bg-input-main border border-border-main p-1 rounded-xl w-full sm:w-auto">
           {[
             { id: "all", label: "All" },
             { id: "pending", label: "Pending" },
@@ -169,8 +169,8 @@ const MyTasks = () => {
               onClick={() => setStatusFilter(tab.id)}
               className={`flex-1 sm:flex-initial py-1.5 px-4 rounded-lg text-xs font-semibold tracking-wide transition-all cursor-pointer ${
                 statusFilter === tab.id
-                  ? "bg-zinc-800 text-purple-400 border border-zinc-700/50 shadow"
-                  : "text-zinc-400 hover:text-zinc-200"
+                  ? "bg-bg-card-hover text-purple-400 border border-border-main shadow"
+                  : "text-text-muted hover:text-text-main"
               }`}
             >
               {tab.label}
@@ -181,12 +181,12 @@ const MyTasks = () => {
 
       {/* Tasks Display */}
       {filteredTasks.length === 0 ? (
-        <div className="glass-card rounded-3xl p-12 text-center text-zinc-500 max-w-lg mx-auto space-y-3">
-          <div className="w-12 h-12 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center mx-auto text-zinc-400">
+        <div className="glass-card rounded-3xl p-12 text-center text-text-muted max-w-lg mx-auto space-y-3">
+          <div className="w-12 h-12 rounded-2xl bg-input-main border border-border-main flex items-center justify-center mx-auto text-text-muted">
             <FiFilter className="w-6 h-6" />
           </div>
-          <h4 className="font-display font-bold text-zinc-300">No tasks found</h4>
-          <p className="text-xs text-zinc-500">
+          <h4 className="font-display font-bold text-text-main">No tasks found</h4>
+          <p className="text-xs text-text-muted">
             No items matched your current filters. Try adding a task or adjusting your search filters.
           </p>
         </div>
@@ -210,7 +210,7 @@ const MyTasks = () => {
               <div className="space-y-3">
                 <div className="flex items-start justify-between gap-4">
                   <h4 className={`font-semibold text-base transition-colors ${
-                    task.completed ? "text-zinc-500 line-through" : "text-zinc-100"
+                    task.completed ? "text-text-muted line-through" : "text-text-main"
                   }`}>
                     {task.title}
                   </h4>
@@ -223,15 +223,15 @@ const MyTasks = () => {
                   </span>
                 </div>
                 <p className={`text-xs ${
-                  task.completed ? "text-zinc-500" : "text-zinc-400"
+                  task.completed ? "text-text-muted" : "text-text-muted"
                 }`}>
                   {task.description || "No description provided."}
                 </p>
               </div>
 
               {/* Footer Meta & Actions */}
-              <div className="flex items-center justify-between border-t border-zinc-800/80 mt-5 pt-4">
-                <div className="flex items-center gap-1.5 text-zinc-500">
+              <div className="flex items-center justify-between border-t border-border-main mt-5 pt-4">
+                <div className="flex items-center gap-1.5 text-text-muted">
                   <FiCalendar className="w-3.5 h-3.5" />
                   <span className="text-[10px] font-medium">
                     {new Date(task.createdAt).toLocaleDateString(undefined, { 
@@ -246,7 +246,7 @@ const MyTasks = () => {
                     onClick={() => toggleCompleted(task)}
                     className={`flex items-center gap-1 py-1.5 px-3 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
                       task.completed
-                        ? "bg-zinc-900 border-zinc-800 text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200"
+                        ? "bg-input-main border-border-main text-text-muted hover:bg-bg-card-hover hover:text-text-main"
                         : "bg-emerald-500/10 border-emerald-500/25 text-emerald-400 hover:bg-emerald-500/20 shadow-glow"
                     }`}
                   >
@@ -264,7 +264,7 @@ const MyTasks = () => {
                   </button>
                   <button
                     onClick={() => deleteTask(task._id)}
-                    className="p-1.5 rounded-lg border border-zinc-800 hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-400 transition-all text-zinc-500 cursor-pointer"
+                    className="p-1.5 rounded-lg border border-border-main hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-400 transition-all text-text-muted cursor-pointer"
                     title="Delete task"
                   >
                     <FiTrash2 className="w-3.5 h-3.5" />

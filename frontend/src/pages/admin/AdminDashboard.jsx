@@ -60,10 +60,10 @@ const AdminDashboard = () => {
     <div className="space-y-8 animate-fade-in">
       {/* Welcome Title */}
       <div className="space-y-1">
-        <h1 className="font-display font-bold text-2xl md:text-3xl tracking-tight text-zinc-100">
+        <h1 className="font-display font-bold text-2xl md:text-3xl tracking-tight text-text-main">
           Admin Cockpit
         </h1>
-        <p className="text-zinc-400 text-sm">
+        <p className="text-text-muted text-sm">
           Overview of platform operations, user accounts, and real-time activity metrics.
         </p>
       </div>
@@ -75,9 +75,9 @@ const AdminDashboard = () => {
           <div className="absolute top-3 right-3 w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400">
             <FiUsers className="w-5 h-5" />
           </div>
-          <p className="text-zinc-500 text-xs font-semibold uppercase tracking-wider">Total Accounts</p>
-          <p className="text-3xl font-display font-bold text-zinc-100 mt-2">{stats.totalUsers}</p>
-          <p className="text-zinc-400 text-[10px] mt-1">Registered team members</p>
+          <p className="text-text-muted text-xs font-semibold uppercase tracking-wider">Total Accounts</p>
+          <p className="text-3xl font-display font-bold text-text-main mt-2">{stats.totalUsers}</p>
+          <p className="text-text-muted text-[10px] mt-1">Registered team members</p>
         </div>
 
         {/* Total Tasks */}
@@ -85,9 +85,9 @@ const AdminDashboard = () => {
           <div className="absolute top-3 right-3 w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400">
             <FiLayers className="w-5 h-5" />
           </div>
-          <p className="text-zinc-500 text-xs font-semibold uppercase tracking-wider">Total Tasks</p>
-          <p className="text-3xl font-display font-bold text-zinc-100 mt-2">{stats.totalTasks}</p>
-          <p className="text-zinc-400 text-[10px] mt-1">Across all user portals</p>
+          <p className="text-text-muted text-xs font-semibold uppercase tracking-wider">Total Tasks</p>
+          <p className="text-3xl font-display font-bold text-text-main mt-2">{stats.totalTasks}</p>
+          <p className="text-text-muted text-[10px] mt-1">Across all user portals</p>
         </div>
 
         {/* Completed Tasks */}
@@ -95,9 +95,9 @@ const AdminDashboard = () => {
           <div className="absolute top-3 right-3 w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
             <FiCheckCircle className="w-5 h-5" />
           </div>
-          <p className="text-zinc-500 text-xs font-semibold uppercase tracking-wider">Completed</p>
-          <p className="text-3xl font-display font-bold text-zinc-100 mt-2">{stats.completedTasks}</p>
-          <p className="text-zinc-400 text-[10px] mt-1">Successfully resolved</p>
+          <p className="text-text-muted text-xs font-semibold uppercase tracking-wider">Completed</p>
+          <p className="text-3xl font-display font-bold text-text-main mt-2">{stats.completedTasks}</p>
+          <p className="text-text-muted text-[10px] mt-1">Successfully resolved</p>
         </div>
 
         {/* Completion Rate */}
@@ -105,9 +105,9 @@ const AdminDashboard = () => {
           <div className="absolute top-3 right-3 w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400">
             <FiClock className="w-5 h-5" />
           </div>
-          <p className="text-zinc-500 text-xs font-semibold uppercase tracking-wider">Completion Rate</p>
-          <p className="text-3xl font-display font-bold text-zinc-100 mt-2">{stats.rate}%</p>
-          <div className="w-full bg-zinc-800 rounded-full h-1.5 mt-3.5">
+          <p className="text-text-muted text-xs font-semibold uppercase tracking-wider">Completion Rate</p>
+          <p className="text-3xl font-display font-bold text-text-main mt-2">{stats.rate}%</p>
+          <div className="w-full bg-input-main rounded-full h-1.5 mt-3.5">
             <div 
               className="bg-gradient-to-r from-purple-500 to-indigo-500 h-1.5 rounded-full" 
               style={{ width: `${stats.rate}%` }}
@@ -120,7 +120,7 @@ const AdminDashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
         {/* Navigation Shortcut Cards */}
         <div className="lg:col-span-2 space-y-6">
-          <h3 className="font-display font-bold text-lg text-zinc-200">
+          <h3 className="font-display font-bold text-lg text-text-main">
             Management Consoles
           </h3>
 
@@ -131,8 +131,8 @@ const AdminDashboard = () => {
             >
               <div>
                 <FiUsers className="w-6 h-6 text-purple-400 mb-3" />
-                <h4 className="font-semibold text-zinc-200 text-sm mb-1">User Directory</h4>
-                <p className="text-xs text-zinc-500">Deactivate accounts, change status levels, or clear profiles.</p>
+                <h4 className="font-semibold text-text-main text-sm mb-1">User Directory</h4>
+                <p className="text-xs text-text-muted">Deactivate accounts, change status levels, or clear profiles.</p>
               </div>
               <span className="text-xs text-purple-400 font-semibold inline-flex items-center gap-1 mt-3">
                 <span>Manage directory</span>
@@ -146,8 +146,8 @@ const AdminDashboard = () => {
             >
               <div>
                 <FiLayers className="w-6 h-6 text-blue-400 mb-3" />
-                <h4 className="font-semibold text-zinc-200 text-sm mb-1">Task Board Monitor</h4>
-                <p className="text-xs text-zinc-500">Track task creations, analyze details, and delete inappropriate entries.</p>
+                <h4 className="font-semibold text-text-main text-sm mb-1">Task Board Monitor</h4>
+                <p className="text-xs text-text-muted">Track task creations, analyze details, and delete inappropriate entries.</p>
               </div>
               <span className="text-xs text-blue-400 font-semibold inline-flex items-center gap-1 mt-3">
                 <span>Monitor tasks</span>
@@ -161,8 +161,8 @@ const AdminDashboard = () => {
             >
               <div>
                 <FiActivity className="w-6 h-6 text-emerald-400 mb-3" />
-                <h4 className="font-semibold text-zinc-200 text-sm mb-1">Audit Logs</h4>
-                <p className="text-xs text-zinc-500">Review security access points, track logouts, and task history.</p>
+                <h4 className="font-semibold text-text-main text-sm mb-1">Audit Logs</h4>
+                <p className="text-xs text-text-muted">Review security access points, track logouts, and task history.</p>
               </div>
               <span className="text-xs text-emerald-400 font-semibold inline-flex items-center gap-1 mt-3">
                 <span>View system logs</span>
@@ -175,7 +175,7 @@ const AdminDashboard = () => {
         {/* Live System Activity Timelines */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="font-display font-bold text-lg text-zinc-200">
+            <h3 className="font-display font-bold text-lg text-text-main">
               Live Activities
             </h3>
             <Link to="/admin/logs" className="text-purple-400 hover:text-purple-300 font-semibold text-xs flex items-center gap-1 transition-colors">
@@ -186,9 +186,9 @@ const AdminDashboard = () => {
 
           <div className="glass-card rounded-3xl p-5 space-y-4">
             {recentLogs.length === 0 ? (
-              <p className="text-xs text-zinc-500 text-center py-6">No recent activity logs found.</p>
+              <p className="text-xs text-text-muted text-center py-6">No recent activity logs found.</p>
             ) : (
-              <div className="relative pl-4 space-y-5 border-l border-zinc-800/80">
+              <div className="relative pl-4 space-y-5 border-l border-border-main">
                 {recentLogs.map((log) => {
                   let badgeColor = "bg-purple-500"
                   if (log.action.includes("Create")) badgeColor = "bg-green-500"
@@ -198,16 +198,16 @@ const AdminDashboard = () => {
                   return (
                     <div key={log._id} className="relative text-xs space-y-1">
                       {/* Timeline Dot */}
-                      <span className={`absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full ${badgeColor} border-2 border-zinc-950 shadow-glow`} />
+                      <span className={`absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full ${badgeColor} border-2 border-bg-main shadow-glow`} />
                       
                       <div className="flex items-center justify-between gap-2">
-                        <span className="font-semibold text-zinc-200">{log.action}</span>
-                        <span className="text-[10px] text-zinc-500">
+                        <span className="font-semibold text-text-main">{log.action}</span>
+                        <span className="text-[10px] text-text-muted">
                           {new Date(log.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                         </span>
                       </div>
-                      <p className="text-zinc-400 text-[10px]">
-                        User: <span className="font-medium text-zinc-300">{log.user?.name || "System"}</span>
+                      <p className="text-text-muted text-[10px]">
+                        User: <span className="font-medium text-text-main">{log.user?.name || "System"}</span>
                       </p>
                     </div>
                   )

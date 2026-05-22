@@ -73,8 +73,8 @@ const TaskMonitoring = () => {
         {/* Total Tasks */}
         <div className="glass-card rounded-2xl p-4 flex items-center justify-between">
           <div>
-            <p className="text-zinc-500 text-[10px] font-semibold uppercase tracking-wider">Monitored Tasks</p>
-            <p className="text-2xl font-bold text-zinc-100 mt-1">{tasks.length}</p>
+            <p className="text-text-muted text-[10px] font-semibold uppercase tracking-wider">Monitored Tasks</p>
+            <p className="text-2xl font-bold text-text-main mt-1">{tasks.length}</p>
           </div>
           <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400">
             <FiLayers className="w-5 h-5" />
@@ -84,7 +84,7 @@ const TaskMonitoring = () => {
         {/* Completed */}
         <div className="glass-card rounded-2xl p-4 flex items-center justify-between">
           <div>
-            <p className="text-zinc-500 text-[10px] font-semibold uppercase tracking-wider">Completed Tasks</p>
+            <p className="text-text-muted text-[10px] font-semibold uppercase tracking-wider">Completed Tasks</p>
             <p className="text-2xl font-bold text-emerald-400 mt-1">{completedCount}</p>
           </div>
           <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
@@ -95,7 +95,7 @@ const TaskMonitoring = () => {
         {/* Pending */}
         <div className="glass-card rounded-2xl p-4 flex items-center justify-between">
           <div>
-            <p className="text-zinc-500 text-[10px] font-semibold uppercase tracking-wider">Pending Tasks</p>
+            <p className="text-text-muted text-[10px] font-semibold uppercase tracking-wider">Pending Tasks</p>
             <p className="text-2xl font-bold text-amber-500 mt-1">{pendingCount}</p>
           </div>
           <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400">
@@ -108,7 +108,7 @@ const TaskMonitoring = () => {
       <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
         {/* Search */}
         <div className="relative w-full sm:max-w-xs">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-text-muted">
             <FiSearch className="w-4 h-4" />
           </div>
           <input
@@ -122,7 +122,7 @@ const TaskMonitoring = () => {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex bg-zinc-900/80 border border-zinc-800 p-1 rounded-xl w-full sm:w-auto">
+        <div className="flex bg-input-main border border-border-main p-1 rounded-xl w-full sm:w-auto">
           {[
             { id: "all", label: "All Tasks" },
             { id: "pending", label: "Pending" },
@@ -133,8 +133,8 @@ const TaskMonitoring = () => {
               onClick={() => setStatusFilter(tab.id)}
               className={`flex-1 sm:flex-initial py-1.5 px-4 rounded-lg text-xs font-semibold tracking-wide transition-all cursor-pointer ${
                 statusFilter === tab.id
-                  ? "bg-zinc-800 text-purple-400 border border-zinc-700/50 shadow"
-                  : "text-zinc-400 hover:text-zinc-200"
+                  ? "bg-bg-card-hover text-purple-400 border border-border-main shadow"
+                  : "text-text-muted hover:text-text-main"
               }`}
             >
               {tab.label}
@@ -145,10 +145,10 @@ const TaskMonitoring = () => {
 
       {/* Task List Monitored */}
       {filteredTasks.length === 0 ? (
-        <div className="glass-card rounded-3xl p-12 text-center text-zinc-500 max-w-lg mx-auto space-y-3">
-          <FiAlertCircle className="w-8 h-8 mx-auto text-zinc-600 animate-pulse" />
-          <h4 className="font-display font-bold text-zinc-300">No tasks monitored</h4>
-          <p className="text-xs text-zinc-500">
+        <div className="glass-card rounded-3xl p-12 text-center text-text-muted max-w-lg mx-auto space-y-3">
+          <FiAlertCircle className="w-8 h-8 mx-auto text-text-muted animate-pulse" />
+          <h4 className="font-display font-bold text-text-main">No tasks monitored</h4>
+          <p className="text-xs text-text-muted">
             No system-wide tasks matched your search or status query.
           </p>
         </div>
@@ -172,8 +172,8 @@ const TaskMonitoring = () => {
                 {/* Task Header & Body */}
                 <div className="space-y-3">
                   <div className="flex items-start justify-between gap-4">
-                    <h4 className="font-semibold text-zinc-200 text-sm">{task.title}</h4>
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold border ${
+                    <h4 className="font-semibold text-text-main text-sm">{task.title}</h4>
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold tracking-wide border ${
                       isCompleted 
                         ? "bg-emerald-500/10 border-emerald-500/25 text-emerald-400"
                         : "bg-indigo-500/10 border-indigo-500/25 text-indigo-400"
@@ -181,23 +181,23 @@ const TaskMonitoring = () => {
                       {isCompleted ? "Completed" : "Pending"}
                     </span>
                   </div>
-                  <p className="text-xs text-zinc-400 leading-relaxed">
+                  <p className="text-xs text-text-muted leading-relaxed">
                     {task.description || "No description provided."}
                   </p>
                 </div>
 
                 {/* Creator Profile Panel & Deletion controls */}
-                <div className="flex items-center justify-between border-t border-zinc-800/80 mt-5 pt-4">
+                <div className="flex items-center justify-between border-t border-border-main mt-5 pt-4">
                   {/* Creator Info */}
                   <div className="flex items-center gap-2.5 overflow-hidden">
-                    <div className="w-8 h-8 rounded-lg bg-zinc-800 border border-zinc-700/50 flex items-center justify-center text-zinc-400 font-bold text-xs shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-input-main border border-border-main flex items-center justify-center text-text-muted font-bold text-xs shrink-0">
                       {creatorInitials}
                     </div>
                     <div className="overflow-hidden">
-                      <p className="text-[11px] font-semibold text-zinc-300 truncate">
+                      <p className="text-[11px] font-semibold text-text-main truncate">
                         {task.createdBy?.name || "Unknown Creator"}
                       </p>
-                      <p className="text-[9px] text-zinc-500 truncate">
+                      <p className="text-[9px] text-text-muted truncate">
                         {task.createdBy?.email || "No email available"}
                       </p>
                     </div>
@@ -206,7 +206,7 @@ const TaskMonitoring = () => {
                   {/* Remote Delete Button */}
                   <button
                     onClick={() => handleDelete(task._id)}
-                    className="p-2 rounded-lg border border-zinc-800 hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-400 transition-all text-zinc-500 cursor-pointer shrink-0"
+                    className="p-2 rounded-lg border border-border-main hover:border-red-500/30 hover:bg-red-500/10 hover:text-red-400 transition-all text-text-muted cursor-pointer shrink-0"
                     title="Administrative Delete"
                   >
                     <FiTrash2 className="w-3.5 h-3.5" />

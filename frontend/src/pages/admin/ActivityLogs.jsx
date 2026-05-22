@@ -97,7 +97,7 @@ const ActivityLogs = () => {
       <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
         {/* Search */}
         <div className="relative w-full sm:max-w-xs">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-text-muted">
             <FiSearch className="w-4 h-4" />
           </div>
           <input
@@ -111,7 +111,7 @@ const ActivityLogs = () => {
         </div>
 
         {/* Filter Categories */}
-        <div className="flex bg-zinc-900/80 border border-zinc-800 p-1 rounded-xl w-full sm:w-auto overflow-x-auto">
+        <div className="flex bg-input-main border border-border-main p-1 rounded-xl w-full sm:w-auto overflow-x-auto">
           {[
             { id: "all", label: "All Logs" },
             { id: "login", label: "Logins" },
@@ -124,8 +124,8 @@ const ActivityLogs = () => {
               onClick={() => setActionFilter(tab.id)}
               className={`flex-1 sm:flex-initial whitespace-nowrap py-1.5 px-4 rounded-lg text-xs font-semibold tracking-wide transition-all cursor-pointer ${
                 actionFilter === tab.id
-                  ? "bg-zinc-800 text-purple-400 border border-zinc-700/50 shadow"
-                  : "text-zinc-400 hover:text-zinc-200"
+                  ? "bg-bg-card-hover text-purple-400 border border-border-main shadow"
+                  : "text-text-muted hover:text-text-main"
               }`}
             >
               {tab.label}
@@ -136,15 +136,15 @@ const ActivityLogs = () => {
 
       {/* Timeline Section */}
       {filteredLogs.length === 0 ? (
-        <div className="glass-card rounded-3xl p-12 text-center text-zinc-500 max-w-lg mx-auto space-y-3">
-          <FiAlertCircle className="w-8 h-8 mx-auto text-zinc-600" />
-          <h4 className="font-display font-bold text-zinc-300">No logs matching filters</h4>
-          <p className="text-xs text-zinc-500">
+        <div className="glass-card rounded-3xl p-12 text-center text-text-muted max-w-lg mx-auto space-y-3">
+          <FiAlertCircle className="w-8 h-8 mx-auto text-text-muted" />
+          <h4 className="font-display font-bold text-text-main">No logs matching filters</h4>
+          <p className="text-xs text-text-muted">
             No audit records matched your current query or action filter tab.
           </p>
         </div>
       ) : (
-        <div className="relative pl-6 sm:pl-8 ml-4 sm:ml-6 border-l border-zinc-850 space-y-8 py-2">
+        <div className="relative pl-6 sm:pl-8 ml-4 sm:ml-6 border-l border-border-main space-y-8 py-2">
           {filteredLogs.map((log) => {
             const meta = getLogIcon(log.action)
             const initials = log.user?.name
@@ -158,7 +158,7 @@ const ActivityLogs = () => {
             return (
               <div key={log._id} className="relative group">
                 {/* Timeline Node Icon */}
-                <div className={`absolute -left-[38px] sm:-left-[46px] top-1.5 w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center border-2 border-zinc-950 shadow-md ${meta.bgColor} transition-transform duration-300 group-hover:scale-110 z-10`}>
+                <div className={`absolute -left-[38px] sm:-left-[46px] top-1.5 w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center border-2 border-bg-main shadow-md ${meta.bgColor} transition-transform duration-300 group-hover:scale-110 z-10`}>
                   {meta.icon}
                 </div>
 
@@ -167,17 +167,17 @@ const ActivityLogs = () => {
                   {/* Action Description */}
                   <div className="space-y-1.5">
                     <div className="flex items-center gap-3">
-                      <h4 className="font-semibold text-zinc-100 text-sm tracking-wide">
+                      <h4 className="font-semibold text-text-main text-sm tracking-wide">
                         {log.action}
                       </h4>
-                      <span className="text-[10px] text-zinc-500 font-medium">
+                      <span className="text-[10px] text-text-muted font-medium">
                         {localTimeStr}
                       </span>
                     </div>
                     
                     {log.taskId && (
-                      <div className="bg-zinc-900/60 border border-zinc-800/80 px-2.5 py-1 rounded-lg inline-flex items-center">
-                        <span className="text-[9px] font-mono text-zinc-500">
+                      <div className="bg-input-main border border-border-main px-2.5 py-1 rounded-lg inline-flex items-center">
+                        <span className="text-[9px] font-mono text-text-muted">
                           Task ID: <span className="text-purple-400">{log.taskId}</span>
                         </span>
                       </div>
@@ -185,15 +185,15 @@ const ActivityLogs = () => {
                   </div>
 
                   {/* Trigger User Profile */}
-                  <div className="flex items-center gap-2.5 border-t border-zinc-800/50 pt-3 md:border-t-0 md:pt-0 shrink-0">
-                    <div className="w-8 h-8 rounded-lg bg-zinc-800 border border-zinc-700/50 flex items-center justify-center text-zinc-400 font-bold text-xs">
+                  <div className="flex items-center gap-2.5 border-t border-border-main pt-3 md:border-t-0 md:pt-0 shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-input-main border border-border-main flex items-center justify-center text-text-muted font-bold text-xs">
                       {initials}
                     </div>
                     <div>
-                      <p className="text-[11px] font-semibold text-zinc-300">
+                      <p className="text-[11px] font-semibold text-text-main">
                         {log.user?.name || "System automated"}
                       </p>
-                      <p className="text-[9px] text-zinc-500">
+                      <p className="text-[9px] text-text-muted">
                         {log.user?.email || "internal@system.local"}
                       </p>
                     </div>
